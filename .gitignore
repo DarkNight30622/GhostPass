@@ -180,6 +180,16 @@ ENV/
 env.bak/
 venv.bak/
 
+# Keep assets directory
+!assets/
+!assets/*.svg
+!assets/*.ico
+!assets/*.png
+!assets/*.jpg
+!assets/*.jpeg
+!assets/*.gif
+!assets/README.md
+
 # OS specific
 .DS_Store
 .DS_Store?

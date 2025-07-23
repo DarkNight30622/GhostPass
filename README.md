@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/logo.svg" alt="GHOST PASS Logo" width="400" height="200">
+</div>
+
 # GHOST PASS 🔒
 
 **Privacy-First CLI-Based VPN & IP-Masking Tool**
