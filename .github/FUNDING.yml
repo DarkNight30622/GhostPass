@@ -1,4 +1,7 @@
 # These are supported funding model platforms
 
 ko_fi: draknight
-buymeacoffee: draknight 
+buymeacoffee: draknight
+
+# Alternative configuration for Buy Me a Coffee
+custom: ["https://buymeacoffee.com/draknight"] 
