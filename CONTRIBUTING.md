@@ -370,6 +370,15 @@ For security issues, please email security@ghostpass.org instead of creating a p
 - Ask in discussions
 - Join community channels
 
+## 💙 Support the Project
+
+If you find GHOST PASS useful, consider supporting its development:
+
+- **Ko-fi**: [https://coff.ee/draknight](https://coff.ee/draknight)
+- **Buy Me a Coffee**: [https://buymeacoffee.com/draknight](https://buymeacoffee.com/draknight)
+
+Your support helps us maintain and improve GHOST PASS for everyone!
+
 ## 📄 License
 
 By contributing to GHOST PASS, you agree that your contributions will be licensed under the MIT License.

@@ -359,12 +359,24 @@ This tool is for educational and privacy purposes only. Users are responsible fo
 - **Discussions**: [GitHub Discussions](https://github.com/ghostpass/ghostpass/discussions)
 - **Wiki**: [GitHub Wiki](https://github.com/ghostpass/ghostpass/wiki)
 
+## ☕ Support GHOST PASS
+
+If you find GHOST PASS useful, consider supporting its development:
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://coff.ee/draknight) [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/draknight)
+
+- **Ko-fi**: [https://coff.ee/draknight](https://coff.ee/draknight)
+- **Buy Me a Coffee**: [https://buymeacoffee.com/draknight](https://buymeacoffee.com/draknight)
+
+Your support helps us maintain and improve GHOST PASS for everyone! 💙
+
 ## 🙏 Acknowledgments
 
 - [TOR Project](https://www.torproject.org/) for the TOR network
 - [Textual](https://textual.textualize.io/) for the beautiful terminal UI
 - [Click](https://click.palletsprojects.com/) for the CLI framework
 - [Cryptography](https://cryptography.io/) for encryption libraries
+- **Our amazing sponsors** for supporting development
 
 ---
 

@@ -181,6 +181,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Requests](https://requests.readthedocs.io/)
 - [PySocks](https://pypi.org/project/PySocks/)
 
+### Sponsorship
+- **Ko-fi**: [https://coff.ee/draknight](https://coff.ee/draknight)
+- **Buy Me a Coffee**: [https://buymeacoffee.com/draknight](https://buymeacoffee.com/draknight)
+
 ---
 
 **For detailed information about each release, see the [GitHub releases page](https://github.com/ghostpass/ghostpass/releases).** 
