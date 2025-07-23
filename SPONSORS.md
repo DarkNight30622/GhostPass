@@ -9,12 +9,8 @@ If you find GHOST PASS useful and want to support its development, consider buyi
 ### 💙 Ko-fi
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://coff.ee/draknight)
 
-**Direct Link**: [https://coff.ee/draknight](https://coff.ee/draknight)
-
 ### ☕ Buy Me a Coffee
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/draknight)
-
-**Direct Link**: [https://buymeacoffee.com/draknight](https://buymeacoffee.com/draknight)
 
 ## 🏆 Sponsorship Tiers
 
