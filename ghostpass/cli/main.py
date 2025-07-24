@@ -369,7 +369,7 @@ async def _run_tests(comprehensive: bool):
             passed = random.choice([True, True, True, False])  # 75% pass rate
             
             results.append((test_name, passed))
-            progress.update(task, description=f"{'✅' if passed else '❌'} {test_name}")
+            progress.update(task, description=f"{'PASS' if passed else 'FAIL'} {test_name}")
         
         # Show results
         table = Table(title="Anonymity Test Results")
