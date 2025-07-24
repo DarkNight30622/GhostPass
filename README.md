@@ -13,6 +13,9 @@
 
 **Your Digital Privacy Guardian** 🔒
 
+<!-- Alternative: Use GitHub raw URL for SVG logo -->
+<!-- <img src="https://raw.githubusercontent.com/DarkNight30622/GhostPass/main/assets/logo.svg" alt="GHOST PASS Logo" width="400" height="200"> -->
+
 </div>
 
 **Privacy-First CLI-Based VPN & IP-Masking Tool**
