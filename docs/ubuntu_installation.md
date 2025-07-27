@@ -281,6 +281,26 @@ This script will:
 - ✅ Verify TOR connection
 - ✅ Provide detailed results
 
+### Method 8: Comprehensive Fix (All Issues)
+
+If you encounter multiple issues (permissions, Python, TOR, test scripts), use the comprehensive fix:
+
+```bash
+# Make comprehensive fix script executable
+chmod +x fix_all_issues.sh
+
+# Run comprehensive fix (fixes everything)
+./fix_all_issues.sh
+```
+
+This script will:
+- ✅ Fix permission issues (chmod problems)
+- ✅ Fix Python environment (virtual environment, dependencies)
+- ✅ Fix TOR configuration (nuclear fix for system config)
+- ✅ Fix test script issues (improved testing)
+- ✅ Test everything automatically
+- ✅ Provide comprehensive status report
+
 ## 🧪 Verification Commands
 
 ### Check Python Installation
@@ -427,6 +447,10 @@ chmod +x test_ghostpass_complete.sh
 chmod +x fix_tor_nuclear.sh
 ./fix_tor_nuclear.sh
 ~/.ghostpass/tor/start_tor.sh
+
+# Or use the all-in-one fix script (for multiple issues)
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
 ```
 
 #### Issue: Permission Denied
@@ -434,6 +458,10 @@ chmod +x fix_tor_nuclear.sh
 # Fix file permissions
 chmod +x *.sh
 chmod 644 requirements.txt setup.py
+
+# Or use the comprehensive fix script
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
 ```
 
 #### Issue: Python Command Not Found
@@ -450,6 +478,10 @@ python3 -m venv ghostpass_env
 source ghostpass_env/bin/activate
 pip install -r requirements.txt
 pip install -e .
+
+# Or use the comprehensive fix script
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
 ```
 
 #### Issue: Module Not Found
@@ -500,6 +532,10 @@ chmod +x test_ghostpass_complete.sh
 # Nuclear fix (for persistent issues - fixes system config)
 chmod +x fix_tor_nuclear.sh
 ./fix_tor_nuclear.sh
+
+# All-in-one fix (for multiple issues)
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
 
 # Quick test to verify fixes work
 chmod +x test_fixes_now.sh
@@ -604,6 +640,7 @@ sudo apt autoremove -y
 - `fix_tor_issue.sh` - TOR configuration fix
 - `fix_tor_aggressive.sh` - Aggressive TOR fix
 - `fix_tor_nuclear.sh` - Nuclear TOR fix (fixes system config)
+- `fix_all_issues.sh` - All-in-one fix (permissions, Python, TOR, tests)
 - `test_ghostpass_complete.sh` - Comprehensive fix for all issues
 - `test_fixes_now.sh` - Quick test for fixes
 - `test_installation.py` - Verification testing
@@ -637,6 +674,9 @@ After successful installation:
 # Method 3: Nuclear fix (if others fail)
 ./fix_tor_nuclear.sh
 ~/.ghostpass/tor/start_tor.sh
+
+# Method 4: All-in-one fix (recommended for any issues)
+./fix_all_issues.sh
 ```
 
 ### For Troubleshooting:
@@ -648,6 +688,7 @@ After successful installation:
 ./fix_tor_issue.sh          # Basic fix
 ./fix_tor_aggressive.sh     # Aggressive fix
 ./fix_tor_nuclear.sh        # Nuclear fix (fixes system config)
+./fix_all_issues.sh         # All-in-one fix (recommended)
 ```
 
 ---
