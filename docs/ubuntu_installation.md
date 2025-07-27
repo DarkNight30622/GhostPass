@@ -170,7 +170,8 @@ mkdir -p ~/.ghostpass/tor/data
 #### Step 9: Start TOR
 ```bash
 # Start TOR in background (with system config bypass)
-tor --config ~/.ghostpass/tor/torrc --data ~/.ghostpass/tor/data --pidfile ~/.ghostpass/tor/tor.pid --ignore-missing-torrc --defaults-torrc /dev/null &
+export TOR_CONFIG_FILE=~/.ghostpass/tor/torrc
+tor --config ~/.ghostpass/tor/torrc --data ~/.ghostpass/tor/data --pidfile ~/.ghostpass/tor/tor.pid --ignore-missing-torrc --defaults-torrc /dev/null --fname /dev/null &
 
 # Wait for TOR to start
 sleep 5
@@ -220,6 +221,24 @@ chmod +x fix_tor_issue.sh
 # Start TOR
 ~/.ghostpass/tor/start_tor.sh
 ```
+
+### Method 5: Comprehensive Fix (Recommended for All Issues)
+
+If you encounter both TOR and Python environment issues, use the comprehensive fix script:
+
+```bash
+# Make comprehensive fix script executable
+chmod +x test_ghostpass_complete.sh
+
+# Run comprehensive fix (handles both TOR and Python issues)
+./test_ghostpass_complete.sh
+```
+
+This script will:
+- ✅ Fix Python environment issues
+- ✅ Fix TOR configuration problems
+- ✅ Test all components automatically
+- ✅ Provide detailed status reports
 
 ## 🧪 Verification Commands
 
@@ -358,6 +377,10 @@ sudo systemctl status tor
 chmod +x fix_tor_issue.sh
 ./fix_tor_issue.sh
 ~/.ghostpass/tor/start_tor.sh
+
+# Or use the comprehensive fix script (recommended)
+chmod +x test_ghostpass_complete.sh
+./test_ghostpass_complete.sh
 ```
 
 #### Issue: Permission Denied
@@ -365,6 +388,22 @@ chmod +x fix_tor_issue.sh
 # Fix file permissions
 chmod +x *.sh
 chmod 644 requirements.txt setup.py
+```
+
+#### Issue: Python Command Not Found
+```bash
+# Activate virtual environment first
+source ghostpass_env/bin/activate
+
+# Verify Python is available
+python --version
+
+# If still not working, recreate virtual environment
+rm -rf ghostpass_env
+python3 -m venv ghostpass_env
+source ghostpass_env/bin/activate
+pip install -r requirements.txt
+pip install -e .
 ```
 
 #### Issue: Module Not Found
@@ -407,6 +446,10 @@ sudo netstat -tlnp | grep 9050
 # Quick fix using the provided script
 chmod +x fix_tor_issue.sh
 ./fix_tor_issue.sh
+
+# Comprehensive fix (recommended for all issues)
+chmod +x test_ghostpass_complete.sh
+./test_ghostpass_complete.sh
 
 # Manual fix
 pkill -f tor 2>/dev/null || true
@@ -504,6 +547,8 @@ sudo apt autoremove -y
 - `install.sh` - Complete installation
 - `quick_fix.sh` - Quick problem resolution
 - `configure_tor.sh` - TOR setup
+- `fix_tor_issue.sh` - TOR configuration fix
+- `test_ghostpass_complete.sh` - Comprehensive fix for all issues
 - `test_installation.py` - Verification testing
 
 ### External Resources
