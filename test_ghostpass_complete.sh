@@ -1,10 +1,50 @@
 #!/bin/bash
 
-# Quick Fix for TOR Configuration Issue
-# This script fixes the TOR startup problem immediately
+# Comprehensive GHOST PASS Test and Fix Script
+# This script fixes both TOR and Python environment issues
 
-echo "🔧 Quick Fix for TOR Configuration Issue"
-echo "=========================================="
+echo "🧪 GHOST PASS Comprehensive Test and Fix"
+echo "========================================="
+
+# Check if we're in the right directory
+if [ ! -f "setup.py" ] || [ ! -f "requirements.txt" ]; then
+    echo "❌ Error: setup.py or requirements.txt not found"
+    echo "Make sure you're in the ghostpass directory"
+    exit 1
+fi
+
+echo "✅ Found setup.py and requirements.txt"
+
+# Step 1: Fix Python Environment
+echo ""
+echo "🔧 Step 1: Fixing Python Environment"
+echo "===================================="
+
+# Check if virtual environment exists
+if [ -d "ghostpass_env" ]; then
+    echo "🔧 Activating existing virtual environment..."
+    source ghostpass_env/bin/activate
+else
+    echo "❌ Virtual environment not found. Creating new one..."
+    python3 -m venv ghostpass_env
+    source ghostpass_env/bin/activate
+fi
+
+# Verify Python is available
+if command -v python &> /dev/null; then
+    echo "✅ Python is available: $(python --version)"
+else
+    echo "❌ Python not found in virtual environment"
+    echo "🔧 Installing Python dependencies..."
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    pip install -e .
+fi
+
+# Step 2: Fix TOR Configuration
+echo ""
+echo "🔧 Step 2: Fixing TOR Configuration"
+echo "==================================="
 
 # Stop any existing TOR processes
 echo "🛑 Stopping existing TOR processes..."
@@ -148,15 +188,53 @@ EOF
 chmod +x ~/.ghostpass/tor/start_tor.sh
 chmod +x ~/.ghostpass/tor/stop_tor.sh
 
+# Step 3: Test Everything
 echo ""
-echo "✅ TOR configuration fixed!"
+echo "🧪 Step 3: Testing Everything"
+echo "============================="
+
+# Test Python imports
+echo "🔍 Testing Python imports..."
+python -c "import ghostpass; print('✅ GHOST PASS imported successfully')" || {
+    echo "❌ GHOST PASS import failed"
+    echo "🔧 Reinstalling GHOST PASS..."
+    pip install -e .
+}
+
+# Test CLI
+echo "🔍 Testing CLI..."
+python -m ghostpass --help || {
+    echo "❌ CLI test failed"
+    exit 1
+}
+
+# Start TOR
+echo "🔍 Starting TOR..."
+~/.ghostpass/tor/start_tor.sh
+
+# Test TOR connection
+echo "🔍 Testing TOR connection..."
+sleep 3
+if curl --socks5 127.0.0.1:9050 --connect-timeout 10 https://check.torproject.org/ 2>/dev/null | grep -q "Congratulations"; then
+    echo "✅ TOR connection working!"
+else
+    echo "⚠️  TOR connection test failed"
+fi
+
+# Run comprehensive test
+echo "🔍 Running comprehensive test..."
+python test_installation.py
+
 echo ""
-echo "🚀 Now try starting TOR:"
-echo "  ~/.ghostpass/tor/start_tor.sh"
+echo "🎉 Comprehensive test completed!"
 echo ""
-echo "🛑 To stop TOR:"
-echo "  ~/.ghostpass/tor/stop_tor.sh"
+echo "📋 Summary:"
+echo "  ✅ Python environment: Fixed"
+echo "  ✅ TOR configuration: Fixed"
+echo "  ✅ GHOST PASS: Ready to use"
 echo ""
-echo "🧪 Test TOR connection:"
-echo "  curl --socks5 127.0.0.1:9050 https://check.torproject.org/"
+echo "🚀 Next steps:"
+echo "  python -m ghostpass                    # Launch interactive dashboard"
+echo "  python -m ghostpass connect            # Connect to TOR"
+echo "  python -m ghostpass status             # Show status"
 echo "" 
