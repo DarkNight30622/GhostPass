@@ -1,46 +1,24 @@
 #!/bin/bash
 
-# TOR Configuration Script for GHOST PASS
-# This script helps configure TOR without requiring sudo access
+# Quick Fix for TOR Configuration Issue
+# This script fixes the TOR startup problem immediately
 
-echo "🔧 TOR Configuration for GHOST PASS"
-echo "===================================="
+echo "🔧 Quick Fix for TOR Configuration Issue"
+echo "=========================================="
 
-# Check if TOR is installed
-if ! command -v tor &> /dev/null; then
-    echo "❌ TOR is not installed"
-    echo ""
-    echo "📦 To install TOR, run:"
-    echo "  sudo apt update"
-    echo "  sudo apt install -y tor"
-    echo ""
-    echo "After installation, run this script again."
-    exit 1
-fi
+# Stop any existing TOR processes
+echo "🛑 Stopping existing TOR processes..."
+pkill -f tor 2>/dev/null || true
+sleep 3
 
-echo "✅ TOR is installed"
+# Remove existing configuration
+echo "🧹 Cleaning existing configuration..."
+rm -rf ~/.ghostpass/tor
+mkdir -p ~/.ghostpass/tor
 
-# Check if TOR service is running
-if sudo systemctl is-active --quiet tor; then
-    echo "✅ TOR service is running"
-else
-    echo "⚠️  TOR service is not running"
-    echo ""
-    echo "🚀 To start TOR service:"
-    echo "  sudo systemctl start tor"
-    echo "  sudo systemctl enable tor"
-    echo ""
-fi
-
-# Check TOR configuration
-echo "🔍 Checking TOR configuration..."
-
-# Create a user-specific TOR configuration
-USER_TOR_DIR="$HOME/.ghostpass/tor"
-mkdir -p "$USER_TOR_DIR"
-
-# Create user TOR configuration
-cat > "$USER_TOR_DIR/torrc" << 'EOF'
+# Create proper TOR configuration
+echo "📝 Creating proper TOR configuration..."
+cat > ~/.ghostpass/tor/torrc << 'EOF'
 # GHOST PASS User TOR Configuration
 SocksPort 9050
 ControlPort 9051
@@ -63,13 +41,12 @@ NewOnionKey 1
 SafeLogging 1
 EOF
 
-echo "✅ User TOR configuration created at $USER_TOR_DIR/torrc"
-
 # Create data directory
-mkdir -p "$USER_TOR_DIR/data"
+mkdir -p ~/.ghostpass/tor/data
 
-# Create startup script
-cat > "$USER_TOR_DIR/start_tor.sh" << 'EOF'
+# Create fixed startup script
+echo "📝 Creating fixed startup script..."
+cat > ~/.ghostpass/tor/start_tor.sh << 'EOF'
 #!/bin/bash
 # Start TOR for GHOST PASS
 
@@ -134,11 +111,8 @@ else
 fi
 EOF
 
-# Make startup script executable
-chmod +x "$USER_TOR_DIR/start_tor.sh"
-
 # Create stop script
-cat > "$USER_TOR_DIR/stop_tor.sh" << 'EOF'
+cat > ~/.ghostpass/tor/stop_tor.sh << 'EOF'
 #!/bin/bash
 # Stop TOR for GHOST PASS
 
@@ -165,19 +139,18 @@ fi
 pkill -f "tor.*$HOME/.ghostpass/tor/torrc" 2>/dev/null || true
 EOF
 
-# Make stop script executable
-chmod +x "$USER_TOR_DIR/stop_tor.sh"
+# Make scripts executable
+chmod +x ~/.ghostpass/tor/start_tor.sh
+chmod +x ~/.ghostpass/tor/stop_tor.sh
 
 echo ""
-echo "✅ TOR configuration completed!"
+echo "✅ TOR configuration fixed!"
 echo ""
-echo "📋 Usage:"
-echo "  Start TOR:  $USER_TOR_DIR/start_tor.sh"
-echo "  Stop TOR:   $USER_TOR_DIR/stop_tor.sh"
+echo "🚀 Now try starting TOR:"
+echo "  ~/.ghostpass/tor/start_tor.sh"
 echo ""
-echo "🔧 Alternative: Use system TOR service"
-echo "  sudo systemctl start tor"
-echo "  sudo systemctl stop tor"
+echo "🛑 To stop TOR:"
+echo "  ~/.ghostpass/tor/stop_tor.sh"
 echo ""
 echo "🧪 Test TOR connection:"
 echo "  curl --socks5 127.0.0.1:9050 https://check.torproject.org/"
