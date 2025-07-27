@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Quick Fix for TOR Configuration Issue
-# This script fixes the TOR startup problem immediately
+# Aggressive Fix for TOR Configuration Issue
+# This script completely bypasses system TOR configuration
 
-echo "🔧 Quick Fix for TOR Configuration Issue"
-echo "=========================================="
+echo "🔧 Aggressive Fix for TOR Configuration Issue"
+echo "=============================================="
 
 # Stop any existing TOR processes
 echo "🛑 Stopping existing TOR processes..."
@@ -44,18 +44,18 @@ EOF
 # Create data directory
 mkdir -p ~/.ghostpass/tor/data
 
-# Create fixed startup script
-echo "📝 Creating fixed startup script..."
+# Create aggressive startup script
+echo "📝 Creating aggressive startup script..."
 cat > ~/.ghostpass/tor/start_tor.sh << 'EOF'
 #!/bin/bash
-# Start TOR for GHOST PASS
+# Start TOR for GHOST PASS (Aggressive Mode)
 
 TOR_DIR="$HOME/.ghostpass/tor"
 TOR_CONFIG="$TOR_DIR/torrc"
 TOR_DATA="$TOR_DIR/data"
 TOR_PID="$TOR_DIR/tor.pid"
 
-echo "🚀 Starting TOR for GHOST PASS..."
+echo "🚀 Starting TOR for GHOST PASS (Aggressive Mode)..."
 
 # Stop any existing TOR processes
 pkill -f "tor.*$TOR_CONFIG" 2>/dev/null || true
@@ -76,22 +76,23 @@ fi
 # Start TOR with explicit configuration and ignore system config
 echo "🔧 Starting TOR with configuration: $TOR_CONFIG"
 
-# Use environment variable to prevent reading system config
+# Method 1: Try with environment variable and empty defaults
 export TOR_CONFIG_FILE="$TOR_CONFIG"
+export TOR_SKIP_CHECK_CONFIG=1
 
-# Create a temporary empty torrc to override system config
-TEMP_TORRC=$(mktemp)
-echo "# Empty torrc to override system config" > "$TEMP_TORRC"
+# Create a completely empty torrc for defaults
+EMPTY_TORRC=$(mktemp)
+echo "# Completely empty torrc" > "$EMPTY_TORRC"
 
-# Start TOR with minimal configuration and override system config
-tor --config "$TOR_CONFIG" --data "$TOR_DATA" --pidfile "$TOR_PID" --ignore-missing-torrc --defaults-torrc "$TEMP_TORRC" --fname /dev/null --hush &
+# Start TOR with aggressive configuration override
+tor --config "$TOR_CONFIG" --data "$TOR_DATA" --pidfile "$TOR_PID" --ignore-missing-torrc --defaults-torrc "$EMPTY_TORRC" --fname /dev/null --hush --quiet &
 
 # Wait for TOR to start
 echo "⏳ Waiting for TOR to start..."
 sleep 5
 
 # Clean up temporary file
-rm -f "$TEMP_TORRC"
+rm -f "$EMPTY_TORRC"
 
 # Check if TOR started successfully
 if [ -f "$TOR_PID" ]; then
@@ -156,7 +157,7 @@ chmod +x ~/.ghostpass/tor/start_tor.sh
 chmod +x ~/.ghostpass/tor/stop_tor.sh
 
 echo ""
-echo "✅ TOR configuration fixed!"
+echo "✅ Aggressive TOR configuration fixed!"
 echo ""
 echo "🚀 Now try starting TOR:"
 echo "  ~/.ghostpass/tor/start_tor.sh"
