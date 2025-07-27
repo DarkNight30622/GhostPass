@@ -169,8 +169,8 @@ mkdir -p ~/.ghostpass/tor/data
 
 #### Step 9: Start TOR
 ```bash
-# Start TOR in background
-tor --config ~/.ghostpass/tor/torrc --data ~/.ghostpass/tor/data --pidfile ~/.ghostpass/tor/tor.pid --ignore-missing-torrc &
+# Start TOR in background (with system config bypass)
+tor --config ~/.ghostpass/tor/torrc --data ~/.ghostpass/tor/data --pidfile ~/.ghostpass/tor/tor.pid --ignore-missing-torrc --defaults-torrc /dev/null &
 
 # Wait for TOR to start
 sleep 5
@@ -204,6 +204,21 @@ cd GhostPass
 # Make executable and run complete installation
 chmod +x install.sh
 ./install.sh
+```
+
+### Method 4: Quick Fix for TOR Issues
+
+If you encounter TOR configuration problems, use the dedicated fix script:
+
+```bash
+# Make fix script executable
+chmod +x fix_tor_issue.sh
+
+# Run the fix
+./fix_tor_issue.sh
+
+# Start TOR
+~/.ghostpass/tor/start_tor.sh
 ```
 
 ## 🧪 Verification Commands
@@ -334,9 +349,14 @@ sudo systemctl status tor
 
 #### Issue: TOR Configuration Error
 ```bash
-# Error: "Unknown option 'config'"
-# Solution: Use the fixed configuration
+# Error: "Unknown option 'config'" or "Reading config failed"
+# Solution: Use the fixed configuration with --defaults-torrc /dev/null
 ./configure_tor.sh
+~/.ghostpass/tor/start_tor.sh
+
+# Or use the quick fix script
+chmod +x fix_tor_issue.sh
+./fix_tor_issue.sh
 ~/.ghostpass/tor/start_tor.sh
 ```
 
@@ -378,6 +398,22 @@ sudo netstat -tlnp | grep 9050
 ```
 
 ### Advanced Troubleshooting
+
+#### TOR Configuration Issues
+```bash
+# If you see "Unknown option 'config'" or "Reading config failed"
+# This means TOR is trying to read system configuration
+
+# Quick fix using the provided script
+chmod +x fix_tor_issue.sh
+./fix_tor_issue.sh
+
+# Manual fix
+pkill -f tor 2>/dev/null || true
+rm -rf ~/.ghostpass/tor
+./configure_tor.sh
+~/.ghostpass/tor/start_tor.sh
+```
 
 #### Check Logs
 ```bash
