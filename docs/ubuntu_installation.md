@@ -301,6 +301,28 @@ This script will:
 - ✅ Test everything automatically
 - ✅ Provide comprehensive status report
 
+### Method 9: Fresh Installation with Fixes
+
+For a completely fresh installation with all fixes applied:
+
+```bash
+# Clone repository
+cd ~
+git clone https://github.com/DarkNight30622/GhostPass.git
+cd GhostPass
+
+# Run comprehensive fix immediately
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
+```
+
+This method:
+- ✅ Starts with a clean repository
+- ✅ Applies all fixes automatically
+- ✅ Handles TOR configuration issues
+- ✅ Activates Python environment properly
+- ✅ Tests everything thoroughly
+
 ## 🧪 Verification Commands
 
 ### Check Python Installation
@@ -430,6 +452,7 @@ sudo systemctl status tor
 #### Issue: TOR Configuration Error
 ```bash
 # Error: "Unknown option 'config'" or "Reading config failed"
+# Error: "Unknown option 'NewOnionKey'" or similar TOR options
 # Solution: Use the fixed configuration with --defaults-torrc /dev/null
 ./configure_tor.sh
 ~/.ghostpass/tor/start_tor.sh
@@ -479,9 +502,26 @@ source ghostpass_env/bin/activate
 pip install -r requirements.txt
 pip install -e .
 
-# Or use the comprehensive fix script
+# Or use the comprehensive fix script (recommended)
 chmod +x fix_all_issues.sh
 ./fix_all_issues.sh
+```
+
+#### Issue: TOR Connection Failed After Installation
+```bash
+# If TOR service is running but connection fails
+# This usually means TOR configuration has invalid options
+
+# Use the comprehensive fix script
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
+
+# Or manually fix TOR configuration
+sudo systemctl stop tor
+sudo systemctl disable tor
+chmod +x fix_tor_nuclear.sh
+./fix_tor_nuclear.sh
+~/.ghostpass/tor/start_tor.sh
 ```
 
 #### Issue: Module Not Found
@@ -595,6 +635,32 @@ You'll know everything is working when:
 - ✅ `python -m ghostpass` launches interactive dashboard
 - ✅ `python test_installation.py` passes all tests
 
+## 🚨 Common Issues and Quick Fixes
+
+### Issue: "Unknown option 'NewOnionKey'" or similar TOR errors
+```bash
+# Quick fix
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
+```
+
+### Issue: "Command 'python' not found"
+```bash
+# Quick fix
+source ghostpass_env/bin/activate
+# Or use comprehensive fix
+chmod +x fix_all_issues.sh
+./fix_all_issues.sh
+```
+
+### Issue: TOR connection refused
+```bash
+# Quick fix
+chmod +x fix_tor_nuclear.sh
+./fix_tor_nuclear.sh
+~/.ghostpass/tor/start_tor.sh
+```
+
 ## 🔄 Uninstall Commands
 
 ### Remove GHOST PASS
@@ -676,6 +742,13 @@ After successful installation:
 ~/.ghostpass/tor/start_tor.sh
 
 # Method 4: All-in-one fix (recommended for any issues)
+./fix_all_issues.sh
+
+# Method 5: Fresh installation with fixes (most reliable)
+cd ~
+git clone https://github.com/DarkNight30622/GhostPass.git
+cd GhostPass
+chmod +x fix_all_issues.sh
 ./fix_all_issues.sh
 ```
 
