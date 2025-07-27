@@ -240,6 +240,47 @@ This script will:
 - ✅ Test all components automatically
 - ✅ Provide detailed status reports
 
+### Method 6: Nuclear Fix (For Persistent TOR Issues)
+
+If you're still experiencing TOR configuration problems, use the nuclear fix script:
+
+```bash
+# Make nuclear fix script executable
+chmod +x fix_tor_nuclear.sh
+
+# Run nuclear fix (fixes system TOR config and uses multiple startup methods)
+./fix_tor_nuclear.sh
+
+# Start TOR
+~/.ghostpass/tor/start_tor.sh
+```
+
+This script will:
+- ✅ Fix system TOR configuration (removes invalid options)
+- ✅ Create backup of original system config
+- ✅ Try multiple TOR startup methods
+- ✅ Test TOR connection automatically
+- ✅ Provide comprehensive status reports
+
+### Method 7: Quick Test (Verify Fixes Work)
+
+To quickly test if the fixes work:
+
+```bash
+# Make test script executable
+chmod +x test_fixes_now.sh
+
+# Run quick test
+./test_fixes_now.sh
+```
+
+This script will:
+- ✅ Check system TOR configuration
+- ✅ Try the enhanced fix
+- ✅ Test TOR startup
+- ✅ Verify TOR connection
+- ✅ Provide detailed results
+
 ## 🧪 Verification Commands
 
 ### Check Python Installation
@@ -381,6 +422,11 @@ chmod +x fix_tor_issue.sh
 # Or use the comprehensive fix script (recommended)
 chmod +x test_ghostpass_complete.sh
 ./test_ghostpass_complete.sh
+
+# Or use the nuclear fix script (for persistent issues)
+chmod +x fix_tor_nuclear.sh
+./fix_tor_nuclear.sh
+~/.ghostpass/tor/start_tor.sh
 ```
 
 #### Issue: Permission Denied
@@ -450,6 +496,14 @@ chmod +x fix_tor_issue.sh
 # Comprehensive fix (recommended for all issues)
 chmod +x test_ghostpass_complete.sh
 ./test_ghostpass_complete.sh
+
+# Nuclear fix (for persistent issues - fixes system config)
+chmod +x fix_tor_nuclear.sh
+./fix_tor_nuclear.sh
+
+# Quick test to verify fixes work
+chmod +x test_fixes_now.sh
+./test_fixes_now.sh
 
 # Manual fix
 pkill -f tor 2>/dev/null || true
@@ -548,7 +602,10 @@ sudo apt autoremove -y
 - `quick_fix.sh` - Quick problem resolution
 - `configure_tor.sh` - TOR setup
 - `fix_tor_issue.sh` - TOR configuration fix
+- `fix_tor_aggressive.sh` - Aggressive TOR fix
+- `fix_tor_nuclear.sh` - Nuclear TOR fix (fixes system config)
 - `test_ghostpass_complete.sh` - Comprehensive fix for all issues
+- `test_fixes_now.sh` - Quick test for fixes
 - `test_installation.py` - Verification testing
 
 ### External Resources
@@ -564,6 +621,34 @@ After successful installation:
 2. **Read the documentation**: Check `README.md` and other guides
 3. **Start using GHOST PASS**: `python -m ghostpass`
 4. **Get help**: Check `TROUBLESHOOTING.md` if you encounter issues
+
+## 🚀 Quick Start Guide
+
+### For New Users:
+```bash
+# Method 1: Quick installation
+./quick_fix.sh
+./configure_tor.sh
+~/.ghostpass/tor/start_tor.sh
+
+# Method 2: Comprehensive installation
+./test_ghostpass_complete.sh
+
+# Method 3: Nuclear fix (if others fail)
+./fix_tor_nuclear.sh
+~/.ghostpass/tor/start_tor.sh
+```
+
+### For Troubleshooting:
+```bash
+# Quick test to see what's wrong
+./test_fixes_now.sh
+
+# Try different fix levels
+./fix_tor_issue.sh          # Basic fix
+./fix_tor_aggressive.sh     # Aggressive fix
+./fix_tor_nuclear.sh        # Nuclear fix (fixes system config)
+```
 
 ---
 
